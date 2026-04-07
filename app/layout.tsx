@@ -17,11 +17,10 @@ import { FloatingNav } from "@/components/ui/floating-nav";
 import { ParticleBackground } from "@/components/ui/particle-background";
 
 export const metadata: Metadata = {
-  title: "Niloy Hakim | Portfolio",
+  title: "Niloy Hakim | Full-Stack Developer",
   description:
-    "A premium, ultra-thin personal portfolio for a full stack web developer focused on modern web technology, Agentic AI, and Python.",
+    "Full-Stack Developer building modern web applications, AI-powered systems, and polished digital products with JavaScript, React, Next.js, and Python.",
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
