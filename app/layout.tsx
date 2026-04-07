@@ -10,6 +10,7 @@ import "@fontsource/syne/600.css";
 import "@fontsource/syne/700.css";
 import "@fontsource/syne/800.css";
 import "@/app/globals.css";
+
 import { SpaceChatbot } from "@/components/chatbot/space-chatbot";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { ThemeProvider } from "@/components/providers/theme-provider";
