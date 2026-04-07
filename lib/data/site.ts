@@ -11,22 +11,22 @@ export const navItems: NavItem[] = [
 export const socialLinks: SocialLink[] = [
   {
     label: "GitHub",
-    href: "https://github.com/yourusername",
+    href: "https://github.com/niloyhakimai",
     icon: "github",
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/yourusername",
+    href: "https://www.linkedin.com/in/niloyhakimai/",
     icon: "linkedin",
   },
   {
     label: "Twitter",
-    href: "https://twitter.com/yourusername",
+    href: "https://x.com/niloynakimai",
     icon: "twitter",
   },
   {
     label: "Facebook",
-    href: "https://facebook.com/yourusername",
+    href: "https://www.facebook.com/",
     icon: "facebook",
   },
 ];
