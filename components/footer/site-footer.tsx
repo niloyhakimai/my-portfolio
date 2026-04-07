@@ -38,12 +38,12 @@ export function SiteFooter() {
             className="transition-colors hover:text-[var(--foreground)]"
             href={`mailto:${siteProfile.email}`}
           >
-            Let's Talk
+            Let&apos;s Talk
           </a>
           
           <span className="opacity-40">|</span>
           
-          <span>© {new Date().getFullYear()}</span>
+          <span>&copy; {new Date().getFullYear()}</span>
           
           {/* Back to Top Button */}
           <button 

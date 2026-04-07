@@ -16,7 +16,7 @@ const contactCards = [
     icon: Mail,
     label: "Email",
     value: siteProfile.email,
-    color: "rgba(240, 80, 50, 0.2)", // Subtle Red Glow
+    color: "rgba(240, 80, 50, 0.2)",
     iconColor: "text-red-400"
   },
   {
@@ -24,8 +24,8 @@ const contactCards = [
     href: socialLinks.find((link) => link.icon === "linkedin")?.href || "#",
     icon: Linkedin,
     label: "LinkedIn",
-    value: "niloy-hakim", // Customize this username
-    color: "rgba(10, 102, 194, 0.2)", // LinkedIn Blue Glow
+    value: "niloynakimai", 
+    color: "rgba(10, 102, 194, 0.2)", 
     iconColor: "text-blue-400"
   },
   {
@@ -33,8 +33,8 @@ const contactCards = [
     href: socialLinks.find((link) => link.icon === "twitter")?.href || "#",
     icon: Twitter,
     label: "Twitter",
-    value: "@NiloyHakim", // Customize this username
-    color: "rgba(29, 155, 240, 0.2)", // Twitter Blue Glow
+    value: "@niloynakimai", 
+    color: "rgba(29, 155, 240, 0.2)", 
     iconColor: "text-sky-400"
   },
 ];

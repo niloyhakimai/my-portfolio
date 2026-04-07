@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Send, LoaderCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -206,3 +207,4 @@ export function ContactForm() {
     </form>
   );
 }
+

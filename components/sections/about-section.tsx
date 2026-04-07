@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Code2, Activity, Globe } from "lucide-react";
+import { GraduationCap, Activity } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 
@@ -30,7 +30,7 @@ export function AboutSection() {
               
               <div className="relative z-[1] space-y-6">
                 <p className="text-base leading-relaxed text-[var(--muted)] sm:text-[17px]">
-                  My programming journey started with a deep curiosity for how things work on the web. After completing my HSC, I bypassed traditional routes and threw myself into self-taught engineering—learning through building real-world projects and solving complex problems.
+                  My programming journey started with a deep curiosity for how things work on the web. After completing my HSC, I bypassed traditional routes and threw myself into self-taught engineering, learning through building real-world projects and solving complex problems.
                 </p>
                 <p className="text-base leading-relaxed text-[var(--muted)] sm:text-[17px]">
                   I truly enjoy work that challenges my architectural thinking. Building scalable full-stack applications and integrating AI-powered systems is where I thrive. I love crafting seamless digital products from front to back using modern JavaScript ecosystems and Python.
@@ -83,7 +83,7 @@ export function AboutSection() {
                       When I am not writing code, you will find me on the <span className="font-semibold text-[var(--accent-secondary)]">Football field</span>. 
                     </p>
                     <p className="mt-2 text-[14px] leading-relaxed text-[var(--muted)]">
-                      Football keeps me grounded and active. The strategy, quick decision-making, and teamwork required on the pitch perfectly mirror my approach to building software—staying agile and working together to hit the target.
+                      Football keeps me grounded and active. The strategy, quick decision-making, and teamwork required on the pitch perfectly mirror my approach to building software, staying agile and working together to hit the target.
                     </p>
                   </div>
                 </div>

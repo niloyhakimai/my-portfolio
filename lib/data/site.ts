@@ -83,7 +83,7 @@ export const siteProfile = {
   availability:
     "Open to remote collaboration, product design-minded engineering work, and ambitious experimental builds.",
   resumeHref: "/resume/niloy-hakim-resume.pdf",
-  email: "niloy.hakim.dev@example.com",
+  email: "niloyhakim.ai@gmail.com",
   phone: "+880 1XXX-XXXXXX",
   location: "Building from home in Bangladesh",
   about: [
