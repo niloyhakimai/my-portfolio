@@ -1,0 +1,25 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" rx="48" fill="#071019"/>
+  <rect x="32" y="32" width="1536" height="936" rx="32" fill="url(#paint)" stroke="rgba(255,255,255,0.08)"/>
+  <path d="M190 760L520 300L760 620L1010 360L1410 780" stroke="url(#constellation)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="520" cy="300" r="22" fill="#9BFFF1"/>
+  <circle cx="760" cy="620" r="28" fill="#7DE2FF"/>
+  <circle cx="1010" cy="360" r="20" fill="#C8F7FF"/>
+  <path d="M210 210H590" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <path d="M210 250H890" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <text x="120" y="162" fill="#E4F6FF" font-family="Syne, sans-serif" font-size="84" font-weight="700">Constellation Project</text>
+  <text x="120" y="226" fill="#90A6C8" font-family="Manrope, sans-serif" font-size="28">Story-led product arc / structured motion / polished dark surface</text>
+  <defs>
+    <linearGradient id="paint" x1="170" y1="110" x2="1450" y2="910" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F2036"/>
+      <stop offset="0.52" stop-color="#07111E"/>
+      <stop offset="1" stop-color="#071726"/>
+    </linearGradient>
+    <linearGradient id="constellation" x1="190" y1="300" x2="1410" y2="780" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7DE2FF" stop-opacity="0.18"/>
+      <stop offset="0.35" stop-color="#7DE2FF"/>
+      <stop offset="0.65" stop-color="#9BFFF1"/>
+      <stop offset="1" stop-color="#7DE2FF" stop-opacity="0.18"/>
+    </linearGradient>
+  </defs>
+</svg>

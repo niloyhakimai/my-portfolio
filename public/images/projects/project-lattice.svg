@@ -1,0 +1,29 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" rx="48" fill="#07111E"/>
+  <rect x="32" y="32" width="1536" height="936" rx="32" fill="url(#paint)" stroke="rgba(255,255,255,0.08)"/>
+  <path d="M120 780H1480" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+  <path d="M120 640H1480" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <path d="M320 120V880" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <path d="M800 120V880" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <path d="M1280 120V880" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <path d="M170 780C308 576.667 488 475 710 475C932 475 1121 576.667 1277 780" stroke="url(#line)" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="713" cy="475" r="128" fill="url(#orb)"/>
+  <text x="120" y="162" fill="#D7EEFF" font-family="Syne, sans-serif" font-size="84" font-weight="700">Project Lattice</text>
+  <text x="120" y="226" fill="#90A6C8" font-family="Manrope, sans-serif" font-size="28">Architectural layout / premium product concept / ultra-thin UI</text>
+  <defs>
+    <linearGradient id="paint" x1="160" y1="120" x2="1430" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10243B"/>
+      <stop offset="0.55" stop-color="#091523"/>
+      <stop offset="1" stop-color="#07101D"/>
+    </linearGradient>
+    <linearGradient id="line" x1="170" y1="650" x2="1277" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#65D7FF" stop-opacity="0.25"/>
+      <stop offset="0.5" stop-color="#9BFFF1"/>
+      <stop offset="1" stop-color="#65D7FF" stop-opacity="0.25"/>
+    </linearGradient>
+    <radialGradient id="orb" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(713 475) rotate(90) scale(128)">
+      <stop stop-color="#9BFFF1" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#10243B" stop-opacity="0.2"/>
+    </radialGradient>
+  </defs>
+</svg>
