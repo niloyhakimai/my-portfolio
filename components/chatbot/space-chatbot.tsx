@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Bot, LoaderCircle, Orbit, SendHorizontal, Sparkles, X } from "lucide-react";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { MagicButton } from "@/components/ui/magic-button";
+import { useMobilePerformance } from "@/lib/hooks/use-mobile-performance";
 import { cn } from "@/lib/utils";
 
 type ChatMessage = {
@@ -19,18 +20,13 @@ const initialMessages: ChatMessage[] = [
   },
 ];
 
-// Making stars dynamic and slightly varied
 const stars = Array.from({ length: 10 }).map(() => ({
   left: `${Math.random() * 90 + 5}%`,
   top: `${Math.random() * 90 + 5}%`,
   delay: Math.random() * 2,
 }));
 
-const quickPrompts = [
-  "Introduce NiloyHakim",
-  "Niloy's Tech Stack",
-  "Show project highlights",
-];
+const quickPrompts = ["Introduce NiloyHakim", "Niloy's Tech Stack", "Show project highlights"];
 
 export function SpaceChatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,13 +34,15 @@ export function SpaceChatbot() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const { shouldReduceMotion } = useMobilePerformance();
+  const showAmbientMotion = isOpen && !shouldReduceMotion;
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({
-      behavior: "smooth",
+      behavior: shouldReduceMotion ? "auto" : "smooth",
       block: "end",
     });
-  }, [isOpen, isSubmitting, messages]);
+  }, [isOpen, isSubmitting, messages, shouldReduceMotion]);
 
   const submitMessage = async (content: string) => {
     const trimmed = content.trim();
@@ -109,46 +107,53 @@ export function SpaceChatbot() {
         {isOpen ? (
           <motion.div
             animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
-            className="pointer-events-auto relative w-[min(24rem,calc(100vw-2rem))] overflow-hidden rounded-[2.5rem] border border-cyan-500/15 bg-[#04060d]/90 p-5 text-white shadow-[0_32px_120px_-10px_rgba(34,211,238,0.3),0_1px_0_rgba(255,255,255,0.06)_inset] backdrop-blur-3xl isolation-auto"
-            exit={{ opacity: 0, scale: 0.8, y: 60, rotateX: 15 }}
-            initial={{ opacity: 0, scale: 0.8, y: 60, rotateX: 15 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            style={{ perspective: "1000px" }}
+            className="pointer-events-auto relative w-[min(24rem,calc(100vw-2rem))] overflow-hidden rounded-[2.5rem] border border-cyan-500/15 bg-[#04060d]/90 p-5 text-white shadow-[0_24px_60px_-10px_rgba(34,211,238,0.18),0_1px_0_rgba(255,255,255,0.06)_inset] backdrop-blur-2xl isolation-auto"
+            exit={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.8, y: 40, rotateX: shouldReduceMotion ? 0 : 15 }}
+            initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.92, y: 24, rotateX: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            style={shouldReduceMotion ? undefined : { perspective: "1000px" }}
           >
-            {/* Holographic Glowing Effects */}
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.22),transparent_40%),radial-gradient(circle_at_bottom,rgba(56,189,248,0.18),transparent_45%)]" />
-            
-            {/* Twinkling Stars */}
-            {stars.map((star) => (
-              <motion.span
-                key={`${star.left}-${star.top}`}
-                animate={{ opacity: [0.3, 1, 0.3] }}
-                className="pointer-events-none absolute h-1 w-1 rounded-full bg-cyan-300/60"
-                style={{ left: star.left, top: star.top }}
-                transition={{ duration: 3, ease: "easeInOut", repeat: Number.POSITIVE_INFINITY, delay: star.delay }}
-              />
-            ))}
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.16),transparent_40%),radial-gradient(circle_at_bottom,rgba(56,189,248,0.12),transparent_45%)]" />
+
+            {showAmbientMotion
+              ? stars.map((star) => (
+                  <motion.span
+                    key={`${star.left}-${star.top}`}
+                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    className="pointer-events-none absolute h-1 w-1 rounded-full bg-cyan-300/60"
+                    style={{ left: star.left, top: star.top }}
+                    transition={{
+                      duration: 3,
+                      ease: "easeInOut",
+                      repeat: Number.POSITIVE_INFINITY,
+                      delay: star.delay,
+                    }}
+                  />
+                ))
+              : null}
 
             <div className="relative z-[1] flex items-start justify-between gap-3 border-b border-cyan-800/20 pb-4">
               <div className="flex items-center gap-3.5">
-                <div className="relative flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/20 bg-sky-400/15 shadow-[0_0_20px_rgba(34,211,238,0.25)]">
+                <div className="relative flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/20 bg-sky-400/15 shadow-[0_0_20px_rgba(34,211,238,0.18)]">
                   <Orbit className="h-6 w-6 text-cyan-200" />
-                  <motion.span
-                    animate={{ rotate: 360 }}
-                    className="absolute inset-[-4px] rounded-full border border-dashed border-cyan-200/20"
-                    transition={{ duration: 12, ease: "linear", repeat: Number.POSITIVE_INFINITY }}
-                  />
-                   <motion.span
-                    animate={{ rotate: -360 }}
-                    className="absolute inset-[10px] rounded-full border border-cyan-200/20"
-                    transition={{ duration: 8, ease: "linear", repeat: Number.POSITIVE_INFINITY }}
-                  />
+                  {showAmbientMotion ? (
+                    <>
+                      <motion.span
+                        animate={{ rotate: 360 }}
+                        className="absolute inset-[-4px] rounded-full border border-dashed border-cyan-200/20"
+                        transition={{ duration: 12, ease: "linear", repeat: Number.POSITIVE_INFINITY }}
+                      />
+                      <motion.span
+                        animate={{ rotate: -360 }}
+                        className="absolute inset-[10px] rounded-full border border-cyan-200/20"
+                        transition={{ duration: 8, ease: "linear", repeat: Number.POSITIVE_INFINITY }}
+                      />
+                    </>
+                  ) : null}
                 </div>
                 <div>
-                  <p className="text-base font-semibold text-white tracking-tight">Nebula Guide</p>
-                  <p className="mt-1.5 text-xs text-cyan-100/60 font-medium">
-                    Groq + Llama 3.3 | Prompt Niloy AI
-                  </p>
+                  <p className="text-base font-semibold tracking-tight text-white">Nebula Guide</p>
+                  <p className="mt-1.5 text-xs font-medium text-cyan-100/60">Groq + Llama 3.3 | Prompt Niloy AI</p>
                 </div>
               </div>
 
@@ -164,24 +169,23 @@ export function SpaceChatbot() {
               </button>
             </div>
 
-            {/* QUICK PROMPT CHIPS */}
-            <motion.div 
-                className="relative z-[1] mt-5 flex flex-wrap gap-2.5"
-                initial="hidden"
-                animate="visible"
-                variants={{
-                    visible: { transition: { staggerChildren: 0.1 } }
-                }}
+            <motion.div
+              className="relative z-[1] mt-5 flex flex-wrap gap-2.5"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                visible: { transition: { staggerChildren: shouldReduceMotion ? 0 : 0.1 } },
+              }}
             >
               {quickPrompts.map((prompt) => (
                 <motion.button
                   key={prompt}
                   variants={{
-                    hidden: { opacity: 0, x: -10, scale: 0.9 },
-                    visible: { opacity: 1, x: 0, scale: 1 }
+                    hidden: { opacity: 0, x: shouldReduceMotion ? 0 : -10, scale: shouldReduceMotion ? 1 : 0.9 },
+                    visible: { opacity: 1, x: 0, scale: 1 },
                   }}
-                  whileHover={{ scale: 1.04, backgroundColor: "rgba(34,211,238,0.06)" }}
-                  className="rounded-full border border-cyan-500/10 bg-cyan-500/[0.03] px-4 py-2 text-xs font-semibold text-cyan-100/90 transition-all duration-300 backdrop-blur-sm shadow-[0_2px_8px_rgba(0,0,0,0.2)]"
+                  whileHover={shouldReduceMotion ? undefined : { scale: 1.04, backgroundColor: "rgba(34,211,238,0.06)" }}
+                  className="rounded-full border border-cyan-500/10 bg-cyan-500/[0.03] px-4 py-2 text-xs font-semibold text-cyan-100/90 shadow-[0_2px_8px_rgba(0,0,0,0.2)] backdrop-blur-sm transition-all duration-300"
                   onClick={() => {
                     void submitMessage(prompt);
                   }}
@@ -192,7 +196,6 @@ export function SpaceChatbot() {
               ))}
             </motion.div>
 
-            {/* MESSAGES */}
             <div className="relative z-[1] mt-5 max-h-[22rem] space-y-4 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-cyan-900 scrollbar-track-transparent">
               {messages.map((message, index) => (
                 <motion.div
@@ -204,7 +207,7 @@ export function SpaceChatbot() {
                       ? "ml-0 border border-cyan-600/15 bg-[#0a0f21]/70 text-cyan-50/85 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]"
                       : "ml-auto border border-sky-300/15 bg-sky-300/10 text-sky-50 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]",
                   )}
-                  initial={{ opacity: 0, scale: 0.96 }}
+                  initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.96 }}
                   transition={{ duration: 0.3 }}
                 >
                   <p className="whitespace-pre-wrap">{message.content}</p>
@@ -212,10 +215,10 @@ export function SpaceChatbot() {
               ))}
 
               {isSubmitting ? (
-                <motion.div 
-                    animate={{ opacity: 1 }}
-                    className="flex max-w-[88%] ml-0 items-center gap-3 rounded-[1.25rem] border border-cyan-600/15 bg-[#0a0f21]/70 px-5 py-3.5 text-sm text-cyan-200/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]"
-                    initial={{ opacity: 0 }}
+                <motion.div
+                  animate={{ opacity: 1 }}
+                  className="ml-0 flex max-w-[88%] items-center gap-3 rounded-[1.25rem] border border-cyan-600/15 bg-[#0a0f21]/70 px-5 py-3.5 text-sm text-cyan-200/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]"
+                  initial={{ opacity: 0 }}
                 >
                   <LoaderCircle className="h-4 w-4 animate-spin text-cyan-400" />
                   <span className="font-medium tracking-tight">Thinking through Nebula network...</span>
@@ -225,7 +228,6 @@ export function SpaceChatbot() {
               <div ref={bottomRef} />
             </div>
 
-            {/* INPUT FORM */}
             <form className="relative z-[1] mt-5 space-y-3" onSubmit={handleSubmit}>
               <div className="rounded-[1.75rem] border border-cyan-600/15 bg-[#0a0f21]/80 p-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.01)] backdrop-blur-lg">
                 <textarea
@@ -237,12 +239,12 @@ export function SpaceChatbot() {
                   value={input}
                 />
                 <div className="flex items-center justify-between px-2.5 pb-1 pt-3">
-                  <div className="flex items-center gap-2.5 text-xs text-cyan-200/40 font-medium">
+                  <div className="flex items-center gap-2.5 text-xs font-medium text-cyan-200/40">
                     <Sparkles className="h-4 w-4 text-cyan-400/60" />
                     <span>Portfolio-aware, bidirectional replies</span>
                   </div>
                   <MagicButton
-                    className="h-11 min-w-11 px-4 py-0 text-cyan-950 bg-cyan-400 hover:bg-cyan-300"
+                    className="h-11 min-w-11 bg-cyan-400 px-4 py-0 text-cyan-950 hover:bg-cyan-300"
                     disabled={isSubmitting}
                     type="submit"
                   >
@@ -260,25 +262,26 @@ export function SpaceChatbot() {
       </AnimatePresence>
 
       <motion.button
-        animate={{ y: [0, -6, 0] }}
+        animate={shouldReduceMotion ? { y: 0 } : { y: [0, -6, 0] }}
         aria-label={isOpen ? "Close AI chatbot" : "Open AI chatbot"}
         className="pointer-events-auto relative flex h-16 w-16 items-center justify-center rounded-full border border-cyan-500/20 bg-[#030408]/85 text-white shadow-[0_12px_30px_rgba(0,0,0,0.5),0_0_18px_rgba(34,211,238,0.18)] backdrop-blur-xl transition-transform duration-300 hover:scale-105"
         onClick={() => {
           setIsOpen((current) => !current);
         }}
-        transition={{ duration: 4.2, ease: "easeInOut", repeat: Number.POSITIVE_INFINITY }}
+        transition={shouldReduceMotion ? { duration: 0 } : { duration: 4.2, ease: "easeInOut", repeat: Number.POSITIVE_INFINITY }}
         type="button"
       >
         <span className="relative flex h-11 w-11 items-center justify-center rounded-full border border-cyan-400/20 bg-sky-400/15 shadow-[0_0_15px_rgba(34,211,238,0.2)]">
           <Bot className="h-5 w-5 text-cyan-100" />
-          <motion.span
-            animate={{ rotate: 360 }}
-            className="absolute inset-[-4px] rounded-full border border-dashed border-cyan-300/30"
-            transition={{ duration: 7, ease: "linear", repeat: Number.POSITIVE_INFINITY }}
-          />
+          {!shouldReduceMotion ? (
+            <motion.span
+              animate={{ rotate: 360 }}
+              className="absolute inset-[-4px] rounded-full border border-dashed border-cyan-300/30"
+              transition={{ duration: 7, ease: "linear", repeat: Number.POSITIVE_INFINITY }}
+            />
+          ) : null}
         </span>
       </motion.button>
     </div>
   );
 }
-

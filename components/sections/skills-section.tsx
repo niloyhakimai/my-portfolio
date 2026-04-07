@@ -2,16 +2,26 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { 
-  SiNextdotjs, SiReact, SiTailwindcss, SiTypescript, SiFramer,
-  SiNodedotjs, SiExpress, SiPrisma, SiPostgresql, SiMongodb, SiPython,
-  SiGit, SiDocker 
+import {
+  SiNextdotjs,
+  SiReact,
+  SiTailwindcss,
+  SiTypescript,
+  SiFramer,
+  SiNodedotjs,
+  SiExpress,
+  SiPrisma,
+  SiPostgresql,
+  SiMongodb,
+  SiPython,
+  SiGit,
+  SiDocker,
 } from "react-icons/si";
 import { Cpu, Mail, Sparkles } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { cn } from "@/lib/utils";
+import { useMobilePerformance } from "@/lib/hooks/use-mobile-performance";
 
-// --- SKILL DATA WITH ORIGINAL BRAND COLORS & ICONS ---
 const skillCategories = [
   {
     id: "frontend",
@@ -22,7 +32,7 @@ const skillCategories = [
       { name: "Tailwind", icon: SiTailwindcss, color: "#06B6D4" },
       { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
       { name: "Framer Motion", icon: SiFramer, color: "#0055FF" },
-    ]
+    ],
   },
   {
     id: "backend",
@@ -34,7 +44,7 @@ const skillCategories = [
       { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
       { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
       { name: "Python", icon: SiPython, color: "#3776AB" },
-    ]
+    ],
   },
   {
     id: "tools",
@@ -45,25 +55,24 @@ const skillCategories = [
       { name: "Git", icon: SiGit, color: "#F05032" },
       { name: "Docker", icon: SiDocker, color: "#2496ED" },
       { name: "Nodemailer", icon: Mail, color: "#EAEAEA", lightColor: "#333333" },
-    ]
-  }
+    ],
+  },
 ];
 
 export function SkillsSection() {
   const [activeTab, setActiveTab] = useState(skillCategories[0].id);
-  const activeCategoryData = skillCategories.find(c => c.id === activeTab);
+  const activeCategoryData = skillCategories.find((category) => category.id === activeTab);
+  const { shouldReduceMotion } = useMobilePerformance();
 
   return (
-    <section className="section-anchor-offset relative px-4 py-12 sm:py-20 lg:py-24 z-10" id="skills">
+    <section className="section-anchor-offset relative z-10 px-4 py-12 sm:py-20 lg:py-24" id="skills">
       <div className="mx-auto max-w-5xl">
-        
         <SectionHeading
           description="Interactive technical ecosystem. Click the categories below to explore the stacks."
           eyebrow="Skills & Technologies"
           title="Architecting with precision and power."
         />
 
-        {/* --- CATEGORY BUTTONS --- */}
         <div className="mt-12 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           {skillCategories.map((category) => {
             const isActive = activeTab === category.id;
@@ -73,9 +82,9 @@ export function SkillsSection() {
                 onClick={() => setActiveTab(category.id)}
                 className={cn(
                   "relative rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 outline-none",
-                  isActive 
-                    ? "text-[var(--foreground)]" 
-                    : "text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-black/5 dark:hover:bg-white/5 border border-transparent"
+                  isActive
+                    ? "text-[var(--foreground)]"
+                    : "border border-transparent text-[var(--muted)] hover:bg-black/5 hover:text-[var(--foreground)] dark:hover:bg-white/5",
                 )}
               >
                 {isActive && (
@@ -91,62 +100,56 @@ export function SkillsSection() {
           })}
         </div>
 
-        {/* --- FLOATING BUBBLES ARENA --- */}
-        <div className="relative mt-16 flex min-h-[380px] w-full items-center justify-center rounded-[2.5rem] border border-black/5 bg-black/[0.02] p-8 sm:p-12 dark:border-white/[0.05] dark:bg-white/[0.01] backdrop-blur-sm">
-          
-          {/* Subtle background glow for the arena */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden rounded-[2.5rem]">
-            <div className="h-64 w-64 rounded-full bg-[var(--accent)]/10 blur-[100px]" />
+        <div className="relative mt-16 flex min-h-[380px] w-full items-center justify-center rounded-[2.5rem] border border-black/5 bg-black/[0.02] p-8 backdrop-blur-sm sm:p-12 dark:border-white/[0.05] dark:bg-white/[0.01]">
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden rounded-[2.5rem]">
+            <div className={cn("rounded-full bg-[var(--accent)]/10", shouldReduceMotion ? "h-40 w-40 blur-[70px]" : "h-64 w-64 blur-[100px]")} />
           </div>
 
           <div className="relative z-10 flex flex-wrap items-center justify-center gap-6 sm:gap-8">
             <AnimatePresence mode="popLayout">
               {activeCategoryData?.skills.map((skill, index) => {
                 const Icon = skill.icon;
-                const floatDuration = 4 + (index % 3); 
+                const floatDuration = 4 + (index % 3);
                 const floatDelay = index * 0.2;
-                
-                // Zig-Zag logic: Even items slightly higher, odd items slightly lower
                 const isEven = index % 2 === 0;
 
                 return (
                   <motion.div
                     key={`${activeTab}-${skill.name}`}
-                    layout
+                    layout={!shouldReduceMotion}
                     initial={{ opacity: 0, scale: 0, y: 40 }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: 1, 
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
                       y: 0,
-                      transition: { type: "spring", stiffness: 200, damping: 20, delay: index * 0.08 }
+                      transition: { type: "spring", stiffness: 200, damping: 20, delay: index * 0.08 },
                     }}
                     exit={{ opacity: 0, scale: 0.5, y: -20, transition: { duration: 0.2 } }}
-                    // Apply Zig-Zag vertical spacing to fill the arena naturally
                     className={cn(
                       "group relative flex flex-col items-center justify-center",
-                      isEven ? "mb-6 sm:mb-12" : "mt-6 sm:mt-12"
+                      shouldReduceMotion ? "my-0" : isEven ? "mb-6 sm:mb-12" : "mt-6 sm:mt-12",
                     )}
                   >
-                    {/* Floating Bubble Container with enhanced float distance */}
                     <motion.div
-                      animate={{ y: ["-15px", "15px", "-15px"] }}
-                      transition={{ duration: floatDuration, repeat: Infinity, ease: "easeInOut", delay: floatDelay }}
-                      className="relative flex h-24 w-24 sm:h-[110px] sm:w-[110px] cursor-pointer flex-col items-center justify-center gap-2 rounded-full border border-black/10 bg-white/60 shadow-xl backdrop-blur-xl transition-all duration-300 hover:scale-110 dark:border-white/10 dark:bg-white/5 dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
+                      animate={shouldReduceMotion ? { y: 0 } : { y: ["-15px", "15px", "-15px"] }}
+                      transition={
+                        shouldReduceMotion
+                          ? { duration: 0 }
+                          : { duration: floatDuration, repeat: Infinity, ease: "easeInOut", delay: floatDelay }
+                      }
+                      className="relative flex h-24 w-24 cursor-pointer flex-col items-center justify-center gap-2 rounded-full border border-black/10 bg-white/60 shadow-xl backdrop-blur-xl transition-all duration-300 hover:scale-110 sm:h-[110px] sm:w-[110px] dark:border-white/10 dark:bg-white/5 dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
                     >
-                      {/* Hover Glow Effect */}
-                      <div 
+                      <div
                         className="absolute inset-0 rounded-full opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-30 dark:group-hover:opacity-40"
                         style={{ backgroundColor: skill.color }}
                       />
-                      
-                      {/* Icon */}
-                      <Icon 
-                        className="relative z-10 h-8 w-8 sm:h-10 sm:w-10 transition-transform duration-300 group-hover:scale-110" 
+
+                      <Icon
+                        className="relative z-10 h-8 w-8 transition-transform duration-300 group-hover:scale-110 sm:h-10 sm:w-10"
                         style={{ color: skill.color }}
                       />
-                      
-                      {/* Skill Name */}
-                      <span className="relative z-10 text-[10px] sm:text-xs font-semibold text-[var(--foreground)]/80 text-center px-2">
+
+                      <span className="relative z-10 px-2 text-center text-[10px] font-semibold text-[var(--foreground)]/80 sm:text-xs">
                         {skill.name}
                       </span>
                     </motion.div>
@@ -155,7 +158,6 @@ export function SkillsSection() {
               })}
             </AnimatePresence>
           </div>
-
         </div>
       </div>
     </section>

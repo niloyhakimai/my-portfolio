@@ -17,11 +17,33 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { FloatingNav } from "@/components/ui/floating-nav";
 import { ParticleBackground } from "@/components/ui/particle-background";
 
+const title = "Niloy Hakim | Full-Stack Developer";
+const description =
+  "Full-Stack Developer building modern web applications, AI-powered systems, and polished digital products with JavaScript, React, Next.js, and Python.";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  process.env.VERCEL_PROJECT_PRODUCTION_URL ??
+  "https://my-portfolio-eight-mu-75.vercel.app";
+const metadataBase = new URL(siteUrl.startsWith("http") ? siteUrl : `https://${siteUrl}`);
+
 export const metadata: Metadata = {
-  title: "Niloy Hakim | Full-Stack Developer",
-  description:
-    "Full-Stack Developer building modern web applications, AI-powered systems, and polished digital products with JavaScript, React, Next.js, and Python.",
+  metadataBase,
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    siteName: "Niloy Hakim Portfolio",
+    type: "website",
+    url: metadataBase,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
