@@ -75,25 +75,25 @@ export const skillGroups: SkillGroup[] = [
 
 export const siteProfile = {
   name: "Niloy Hakim",
-  designation: "Full Stack Web Developer",
+  designation: "Full-Stack Developer",
   spotlight:
-    "Currently focused on modern web technologies, Agentic AI, and Python with a builder-first mindset.",
+    "Building modern web applications, AI-powered features, and polished digital products with a product-first mindset.",
   introduction:
-    "I design and develop premium digital experiences that feel structured, quiet, and sharply intentional.",
+    "I design and develop clean, high-performance digital experiences with a focus on usability, structure, and execution.",
   availability:
-    "Open to remote collaboration, product design-minded engineering work, and ambitious experimental builds.",
+    "Open to remote roles, freelance work, and product-focused collaborations.",
   resumeHref: "/resume/niloy-hakim-resume.pdf",
   email: "niloyhakim.ai@gmail.com",
   phone: "+880 1XXX-XXXXXX",
-  location: "Building from home in Bangladesh",
+  location: "Bangladesh",
   about: [
-    "My programming journey started with curiosity around how clean interfaces and thoughtful systems come together behind the scenes. That curiosity turned into daily practice, long nights of experimentation, and an obsession with making products feel calm, modern, and genuinely useful.",
-    "I completed my Higher Secondary Certificate (HSC) and now continue learning from home by building projects, studying modern web architecture, and exploring how AI can elevate real user experiences without turning them into noise.",
+    "I started programming out of curiosity and gradually turned it into a focused practice of building real products. Over time, that evolved into a habit of solving problems through structure, clean interfaces, and reliable systems.",
+    "After completing my Higher Secondary Certificate (HSC), I continued learning independently by building projects, studying modern web architecture, and integrating AI where it adds real value to the user experience.",
   ],
   interests: [
-    "Coding immersive web products",
-    "Exploring new AI technology",
-    "Studying interface and architectural design",
-    "Music, films, and quiet personal experiments",
+    "Modern web development",
+    "AI-powered product building",
+    "Interface design and architecture",
+    "Music, films, and creative experimentation",
   ],
 };
