@@ -2,39 +2,78 @@ import type { Project } from "@/lib/types";
 
 export const projects: Project[] = [
 {
-    id: "cinetube",
-    title: "CineTube",
-    category: "Full-Stack Streaming Platform",
+  id: "cinetube",
+  title: "CineTube",
+  category: "Full-Stack Streaming & Discovery Platform",
+  year: "2026",
+  tagline:
+    "A full-stack movie and TV streaming platform with TMDB-powered discovery, Stripe billing, role-based moderation, and Groq-backed AI assistance.",
+  excerpt:
+    "A production-style streaming experience built with Next.js and Express, featuring subscriptions, premium checkout flows, watchlists, moderated reviews, admin tools, and AI-powered discovery.",
+  description:
+    "CineTube is a full-stack streaming and discovery platform that combines a cinematic Next.js frontend with an Express and Prisma backend. The app supports JWT and Google authentication, role-based access for admins, moderators, and curators, profile management, watchlists, approved community reviews with comments and likes, TMDB-powered catalog sync through backend proxy routes, and Stripe-based monthly/yearly subscriptions alongside premium movie purchase and rental flows. It also includes Groq-backed AI recommendations, AI review summaries, and a floating assistant that helps users discover titles, understand plans, and navigate the platform.",
+  cover: "/images/cinetube-cover.jpg",
+  techStack: [
+    "Next.js 16",
+    "React 19",
+    "Tailwind CSS 4",
+    "Node.js",
+    "Express 5",
+    "Prisma ORM",
+    "PostgreSQL",
+    "Stripe",
+    "Google OAuth",
+    "TMDB API",
+    "Groq API"
+  ],
+  liveUrl: "https://cinetube-self.vercel.app",
+  githubUrl: "https://github.com/niloyhakimai/cinetube-frontend",
+  challenges: [
+    "Combining local media management with TMDB-synced discovery while keeping routes, previews, and metadata consistent across movies and series.",
+    "Designing a unified Stripe payment flow that supports subscriptions, premium title checkout, and access control inside the viewing experience.",
+    "Managing role-based permissions and review moderation for admins, moderators, curators, and regular users without making the product flow feel heavy."
+  ],
+  improvements: [
+    "Add real-time notifications for review replies, moderation actions, featured drops, and subscription events.",
+    "Expand the AI layer into deeper personalization using watchlist activity, ratings, purchases, and viewing behavior.",
+    "Upgrade playback with richer streaming features such as resume progress, subtitle/audio preferences, and adaptive HLS/DASH delivery."
+  ],
+},
+
+{
+    id: "estatepro",
+    title: "EstatePro",
+    category: "Full-Stack Real Estate Platform",
     year: "2026",
-    tagline: "A premium movie and TV series streaming platform featuring secure payments, TMDB synchronization, and an interactive community.",
+    tagline: "A premium real estate platform featuring AI-assisted discovery, role-based dashboards, and property management.",
     excerpt:
-      "A cinematic, full-stack media platform integrating Stripe payments, real-time TMDB data, and robust role-based access control.",
+      "A complete real estate ecosystem built with Next.js, integrating Groq-powered AI for natural language search and advanced role-aware routing.",
     description:
-      "CineTube is a comprehensive streaming ecosystem built to handle dynamic media catalogs and complex user flows. The frontend utilizes Next.js App Router and Tailwind CSS to deliver a visually striking, cinematic browsing experience. On the backend, a robust Node.js, Express, and Prisma ORM architecture manages secure JWT authentication, relational data (users, purchases, reviews), and acts as a secure proxy/cache layer for TMDB API requests. It features a complete monetization system via Stripe for monthly/yearly subscriptions and 48-hour rentals, alongside an interactive community engine for nested reviews and ratings.",
-    cover: "/images/cinetube-cover.jpg", 
+      "EstatePro is designed as a comprehensive real estate product rather than a simple landing page. Built on the Next.js App Router, it offers a polished marketing site, searchable property catalog, and dedicated dashboard experiences for Admins, Managers, and Users. The platform leverages Prisma and PostgreSQL for robust relational data management, secured by NextAuth credentials. Its standout feature is the deep AI integration powered by Groq, offering prompt-to-filter property discovery and a conversational floating real estate assistant, all wrapped in a responsive, modern glass-inspired UI.",
+    cover: "/images/estatepro-cover.jpg", 
     techStack: [
       "Next.js", 
-      "Node.js", 
-      "Express.js", 
+      "React",
+      "TypeScript",
       "Prisma ORM", 
       "PostgreSQL", 
-      "Stripe API", 
+      "NextAuth.js", 
+      "Groq AI",
       "Tailwind CSS"
     ],
-    liveUrl: "https://cinetube-self.vercel.app/",
-    githubUrl: "https://github.com/niloyhakimai/cinetube-frontend",
+    liveUrl: "https://estatepro-ai.vercel.app/",
+    githubUrl: "https://github.com/niloyhakimai/estatepro-ai",
     challenges: [
-      "Architecting a secure proxy and caching layer for TMDB API requests to maximize performance and protect API keys.",
-      "Designing a unified checkout flow with Stripe that seamlessly handles both recurring subscriptions and one-time movie rentals.",
-      "Structuring a complex relational database with Prisma to efficiently manage users, media overrides, watchlists, and nested community reviews.",
+      "Integrating the Groq AI SDK to accurately parse natural language prompts and securely convert them into structured Prisma database filters.",
+      "Implementing strict role-aware dashboard routing and protecting API routes for three distinct user tiers (ADMIN, MANAGER, USER) using NextAuth.",
+      "Designing a scalable, shareable search state management system for the explore page with advanced filtering, sorting, and pagination.",
     ],
     improvements: [
-      "Implement WebSockets for real-time notifications on new movie drops and review replies.",
-      "Develop a personalized recommendation engine based on user watch history and rating patterns.",
-      "Integrate an advanced video player with custom HLS/DASH streaming capabilities.",
+      "Add interactive map integrations (e.g., Google Maps or Mapbox) for location-based property discovery and boundary drawing.",
+      "Integrate Stripe payment processing for premium listing fees or booking deposits.",
+      "Implement real-time WebSocket notifications to instantly alert managers and users when new property inquiries are submitted or updated.",
     ],
   },
-
 
   {
     id: "interactive-3d-environment",
