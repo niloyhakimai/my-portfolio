@@ -50,6 +50,7 @@ export const metadata: Metadata = {
     title,
     description,
     images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({
