@@ -42,7 +42,7 @@ export function ParticleBackground() {
     };
 
     const counts = shouldReduceMotion
-      ? { distant: 12, mid: 8, near: 4 }
+      ? { distant: 0, mid: 0, near: 0 }
       : { distant: 40, mid: 25, near: 15 };
 
     setDistantStars(generateStars(counts.distant, 1, 2, 2.5));

@@ -34,6 +34,15 @@ const inlineMetrics = [
 export function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
   const { shouldReduceMotion } = useMobilePerformance();
+  const revealTransition = shouldReduceMotion
+    ? { duration: 0 }
+    : { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const };
+  const imageRevealTransition = shouldReduceMotion
+    ? { duration: 0 }
+    : { duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] as const };
+  const metricsRevealTransition = shouldReduceMotion
+    ? { duration: 0 }
+    : { duration: 0.8, delay: 0.4 };
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -82,8 +91,8 @@ export function HeroSection() {
             style={shouldReduceMotion ? undefined : { y: textY, opacity: opacityFade }}
             animate={{ opacity: 1, y: 0 }}
             className="relative z-10 flex flex-col items-start"
-            initial={{ opacity: 0, y: 30 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+            transition={revealTransition}
           >
             <div className="inline-flex items-center gap-2 rounded-full border border-[var(--accent-secondary)]/20 bg-[var(--accent-secondary)]/[0.03] px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-wider text-[var(--accent-secondary)] backdrop-blur-md">
               <span className="relative flex h-1.5 w-1.5">
@@ -145,8 +154,8 @@ export function HeroSection() {
             style={shouldReduceMotion ? undefined : { y: imageScrollY, opacity: opacityFade }}
             animate={{ opacity: 1, scale: 1 }}
             className="pointer-events-none relative z-10 mx-auto w-full max-w-[20rem] sm:max-w-[24rem] lg:ml-auto lg:max-w-[28rem]"
-            initial={{ opacity: 0, scale: 0.85 }}
-            transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.85 }}
+            transition={imageRevealTransition}
           >
             <motion.div style={shouldReduceMotion ? undefined : { x: imageParallaxX, y: imageParallaxY }}>
               <motion.div
@@ -168,9 +177,9 @@ export function HeroSection() {
                     className="object-cover object-center opacity-95 transition-opacity duration-700 dark:hover:opacity-100"
                     fill
                     priority
-                    quality={72}
-                    sizes="(max-width: 640px) 18rem, (max-width: 1024px) 24rem, 28rem"
-                    src="/images/profile.png"
+                    quality={68}
+                    sizes="(max-width: 640px) 256px, (max-width: 1024px) 384px, 448px"
+                    src="/images/profile.webp"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_50%,var(--background)_100%)] transition-colors duration-500" />
                 </div>
@@ -190,8 +199,8 @@ export function HeroSection() {
         <motion.div
           animate={{ opacity: 1, y: 0 }}
           className="relative z-20 mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 rounded-3xl border border-black/5 bg-black/[0.02] py-5 backdrop-blur-sm transition-colors duration-500 sm:gap-x-12 dark:border-white/5 dark:bg-white/[0.01]"
-          initial={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          transition={metricsRevealTransition}
         >
           {inlineMetrics.map((metric) => {
             const Icon = metric.icon;

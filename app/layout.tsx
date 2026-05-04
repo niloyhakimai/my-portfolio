@@ -11,7 +11,7 @@ import "@fontsource/syne/700.css";
 import "@fontsource/syne/800.css";
 import "@/app/globals.css";
 
-import { SpaceChatbot } from "@/components/chatbot/space-chatbot";
+import { DeferredChatbot } from "@/components/providers/deferred-chatbot";
 import { SiteFooter } from "@/components/footer/site-footer";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { FloatingNav } from "@/components/ui/floating-nav";
@@ -66,7 +66,7 @@ export default function RootLayout({
           <FloatingNav />
           <main className="relative z-10">{children}</main>
           <SiteFooter />
-          <SpaceChatbot />
+          <DeferredChatbot />
         </ThemeProvider>
       </body>
     </html>
